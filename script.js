@@ -341,3 +341,49 @@ new Cube({
   viewport: viewport,
   element: document.getElementsByClassName('cube')[0]
 });
+
+
+// nijat ibrahimov
+
+
+// функция определения типа эвента
+// function getEvtType(evt) {
+//   let currEvent = null;
+//   currEvent = evt.type;
+//   console.log(currEvent);
+// }
+
+// общие переменные
+const blanks = document.querySelectorAll('.blank');
+
+blanks.forEach(elem => {
+
+  // функции на элементах
+  elem.onmousedown = mouseStartEventHandler;
+  elem.onmouseup = mouseEndEventHandler;
+
+  // функция остановки движения куба по странице
+  function mouseEndEventHandler(event) {
+    const cube = document.querySelector('.viewport');
+    cube.addEventListener('mouseup', function () {
+      console.log(elem.target);
+    });
+
+  }
+
+  // функция начала движения куба по странице
+  function mouseStartEventHandler(event) {
+    if (event.type == 'mousedown') {
+      document.addEventListener('mousemove', function (e) {
+        const cube = document.querySelector('.viewport');
+        let cubeWidth = cube.offsetWidth;
+        let left = e.clientX - (cubeWidth / 2);
+        let top = e.clientY - (cubeWidth / 2);
+        cube.style.left = `${left}px`;
+        cube.style.top = `${top}px`;
+        e.stopPropagation();
+      });
+    };
+  };
+
+});
