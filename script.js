@@ -98,6 +98,73 @@ function bindEvent(element, type, handler) {
 }
 
 function Viewport(data) {
+  // nijat ibrahimov
+  let booleanN = true;
+
+  // общие переменные
+  const blanks = document.querySelectorAll('.blank');
+  const cubeViewport = document.querySelector('.viewport');
+  const cube = document.querySelector('.cube');
+  let cubeViewportWidth = cubeViewport.offsetWidth;
+
+
+  blanks.forEach(elem => {
+
+    // функции на элементах
+    elem.onmousedown = mouseStartEventHandler;
+    elem.touchmove = touchStartEventHandler;
+    cubeViewport.onmouseup = mouseEndEventHandler;
+    cubeViewport.touchend = touchEndEventHandler;
+
+
+    // функция остановки движения куба по странице
+    function mouseEndEventHandler(event) {
+      document.addEventListener('mousemove', function (e) {
+        if (event.type === 'mouseup') {
+          cubeViewport.style.left = `${event.pageX - (cubeViewportWidth / 2)}px`;
+          cubeViewport.style.top = `${event.pageY - (cubeViewportWidth / 2)}px`;
+          booleanN = true;
+          e.stopPropagation();
+        }
+      });
+    };
+    function touchEndEventHandler(event) {
+      document.addEventListener('touchmove', function (e) {
+        if (event.type === 'touchend') {
+          cubeViewport.style.left = `${event.pageX - (cubeViewportWidth / 2)}px`;
+          cubeViewport.style.top = `${event.pageY - (cubeViewportWidth / 2)}px`;
+          booleanN = true;
+          e.stopPropagation();
+        }
+      });
+    };
+
+    // функция начала движения куба по странице
+    function mouseStartEventHandler(event) {
+      document.addEventListener('mousemove', function (e) {
+        if (event.type === 'mousedown') {
+          cubeViewport.style.left = `${e.pageX - (cubeViewportWidth / 2)}px`;
+          cubeViewport.style.top = `${e.pageY - (cubeViewportWidth / 2)}px`;
+          booleanN = false;
+          e.stopPropagation();
+        }
+      });
+    };
+
+    function touchStartEventHandler(event) {
+      document.addEventListener('touchmove', function (e) {
+        if (event.type === 'touchstart') {
+          cubeViewport.style.left = `${e.pageX - (cubeViewportWidth / 2)}px`;
+          cubeViewport.style.top = `${e.pageY - (cubeViewportWidth / 2)}px`;
+          booleanN = false;
+          e.stopPropagation();
+        }
+      });
+    };
+
+  });
+
+
   events.add(this);
 
   var self = this;
@@ -142,10 +209,15 @@ function Viewport(data) {
     self.down = false;
   });
 
+
+  // прокрутка куба
   bindEvent(document, 'mousemove', function (e) {
-    self.mouseX = e.pageX;
-    self.mouseY = e.pageY;
+    if (booleanN === true && e.target.classList.contains('cube-image')) {
+      self.mouseX = e.pageX;
+      self.mouseY = e.pageY;
+    }
   });
+  // прокрутка куба
 
   bindEvent(document, 'touchstart', function (e) {
 
@@ -307,6 +379,8 @@ function Cube(data) {
     self.sideChange();
   });
 }
+
+// сохранение вертикальной ротации изображения
 Cube.prototype.rotateSides = function () {
   var viewport = this.viewport;
   if (viewport.positionY > 90 && viewport.positionY < 270) {
@@ -317,6 +391,8 @@ Cube.prototype.rotateSides = function () {
     this.sides[5].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + -(viewport.positionX + 180 - viewport.torqueX) + 'deg)';
   }
 }
+// сохранение вертикальной ротации изображения
+
 Cube.prototype.upsideDown = function (obj) {
 
   var deg = (obj.upsideDown == true) ? '180deg' : '0deg';
@@ -343,47 +419,4 @@ new Cube({
 });
 
 
-// nijat ibrahimov
 
-
-// функция определения типа эвента
-// function getEvtType(evt) {
-//   let currEvent = null;
-//   currEvent = evt.type;
-//   console.log(currEvent);
-// }
-
-// общие переменные
-const blanks = document.querySelectorAll('.blank');
-
-blanks.forEach(elem => {
-
-  // функции на элементах
-  elem.onmousedown = mouseStartEventHandler;
-  elem.onmouseup = mouseEndEventHandler;
-
-  // функция остановки движения куба по странице
-  function mouseEndEventHandler(event) {
-    const cube = document.querySelector('.viewport');
-    cube.addEventListener('mouseup', function () {
-      console.log(elem.target);
-    });
-
-  }
-
-  // функция начала движения куба по странице
-  function mouseStartEventHandler(event) {
-    if (event.type == 'mousedown') {
-      document.addEventListener('mousemove', function (e) {
-        const cube = document.querySelector('.viewport');
-        let cubeWidth = cube.offsetWidth;
-        let left = e.clientX - (cubeWidth / 2);
-        let top = e.clientY - (cubeWidth / 2);
-        cube.style.left = `${left}px`;
-        cube.style.top = `${top}px`;
-        e.stopPropagation();
-      });
-    };
-  };
-
-});
