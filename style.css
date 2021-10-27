@@ -13,12 +13,14 @@ body {
 	font-weight: 300;
 }
 
-#wrapper {
+/* #wrapper {
 	padding-top: 10%;
-}
+} */
 
 .viewport {
 	position: absolute;
+	top: 50px;
+	left: 50px;
 	-webkit-perspective: 800px;
 	-moz-perspective: 800px;
 	-ms-perspective: 800px;
@@ -92,6 +94,7 @@ body {
 	-o-transition: color 600ms;
 	transition: color 600ms;
 	cursor: grab;
+	user-select: none;
 }
 .cube > div > div.cube-image.active {
 	color: red;
@@ -186,4 +189,14 @@ object:hover {
 	width: 60px;
 	height: 60px;
 	cursor: move;
+}
+
+#draggable {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	left: 50px;
+	top: 50px;
+	border-radius: 50%;
+	background: blue;
 }
