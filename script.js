@@ -98,46 +98,59 @@ function bindEvent(element, type, handler) {
 }
 
 function Viewport(data) {
-  // nijat ibrahimov
 
-  // общие переменные
+
+  // new code start
+
   const blanks = document.querySelectorAll('.blank');
-  const cubeViewport = document.querySelector('.viewport');
-  const cube = document.querySelector('.cube');
-  let cubeViewportWidth = cubeViewport.offsetWidth;
   let detecter = null;
 
-  blanks.forEach(elem => {
-    // функции на элементах
-    elem.onmousedown = mouseStartEventHandler;
-    cubeViewport.onmouseup = mouseEndEventHandler;
+  blanks.forEach(blank => {
 
-    // функция начала движения куба по странице
-    function mouseStartEventHandler(event) {
-      if (event.type === 'mousedown') {
-        document.addEventListener('mousemove', function (e) {
-          detecter = false;
-          cubeViewport.style.left = `${e.clientX - (cubeViewportWidth / 2)}px`;
-          cubeViewport.style.top = `${e.clientY - (cubeViewportWidth / 2)}px`;
-          console.log(cubeViewportWidth - event.clientX);
-          e.stopPropagation();
-        });
-      }
-    };
+    const cube = document.querySelector('.viewport');
 
-    // функция остановки движения куба по странице
-    function mouseEndEventHandler(event) {
-      if (event.type === 'mouseup') {
-        document.addEventListener('mousemove', function (e) {
-          detecter = true;
-          cubeViewport.style.left = `${event.clientX - (cubeViewportWidth / 2)}px`;
-          cubeViewport.style.top = `${event.clientY - (cubeViewportWidth / 2)}px`;
-          e.stopPropagation();
-        });
+    blank.onmousedown = function (event) {
+
+      let shiftX = event.clientX - cube.getBoundingClientRect().left;
+      let shiftY = event.clientY - cube.getBoundingClientRect().top;
+
+      console.log(this);
+
+      cube.style.position = 'absolute';
+      cube.style.zIndex = '1000'
+
+      document.body.append(cube);
+
+      moveAt(event.pageX, event.pageY);
+
+      function moveAt(pageX, pageY) {
+        detecter = false;
+        cube.style.left = `${pageX - shiftX}px`;
+        cube.style.top = `${pageY - shiftY}px`;
       }
-    };
+
+      function onMouseMove(event) {
+        moveAt(event.pageX, event.pageY);
+      }
+
+
+      document.addEventListener('mousemove', onMouseMove);
+
+      cube.onmouseup = function () {
+        detecter = true;
+        document.removeEventListener('mousemove', onMouseMove);
+        cube.onmouseup = null;
+      }
+
+      cube.ondragstart = function () {
+        return false;
+      }
+
+    }
 
   });
+
+  // new code end
 
 
   events.add(this);
@@ -187,7 +200,7 @@ function Viewport(data) {
 
   // прокрутка куба
   bindEvent(document, 'mousemove', function (e) {
-    if (detecter === true && e.target.classList.contains('cube-image')) {
+    if (detecter !== false && e.target.closest('.side')) {
       self.mouseX = e.pageX;
       self.mouseY = e.pageY;
     }
@@ -394,5 +407,3 @@ new Cube({
 });
 
 
-
-$("#draggable").draggable();
