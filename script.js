@@ -115,8 +115,6 @@ function Viewport(data) {
       shiftX = event.clientX - left,
       shiftY = event.clientY - top;
 
-    console.log(this);
-
     cube.style.position = 'absolute';
     cube.style.zIndex = '1000'
 

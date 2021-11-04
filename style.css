@@ -181,7 +181,7 @@ object:hover {
 	min-height: 3000px;
 }
 .blank {
-	background-color: red;
+	background-color: transparent;
 	width: 80px;
 	height: 80px;
 	position: absolute;
