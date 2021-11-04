@@ -91,6 +91,7 @@ body {
 	transition: color 600ms;
 	cursor: grab;
 	user-select: none;
+	background-color: #dd9933;
 }
 .cube > div > div.cube-image.active {
 	color: red;
@@ -176,13 +177,16 @@ object:hover {
 	}
 }
 
+.q {
+	min-height: 3000px;
+}
 .blank {
+	background-color: red;
+	width: 80px;
+	height: 80px;
 	position: absolute;
-	top: 50%;
 	left: 50%;
+	top: 50%;
 	transform: translate(-50%, -50%);
-	background-color: transparent;
-	width: 60px;
-	height: 60px;
 	cursor: move;
 }

@@ -102,53 +102,53 @@ function Viewport(data) {
 
   // new code start
 
-  const blanks = document.querySelectorAll('.blank');
+  const blank = document.querySelector('.blank');
   let detecter = null;
 
-  blanks.forEach(blank => {
+  const cube = document.querySelector('.viewport');
 
-    const cube = document.querySelector('.viewport');
+  blank.onmousedown = function (event) {
 
-    blank.onmousedown = function (event) {
+    let cubeWidth = cube.offsetWidth,
+      left = event.clientX - (cubeWidth / 2),
+      top = event.clientY - (cubeWidth / 2),
+      shiftX = event.clientX - left,
+      shiftY = event.clientY - top;
 
-      let shiftX = event.clientX - cube.getBoundingClientRect().left;
-      let shiftY = event.clientY - cube.getBoundingClientRect().top;
+    console.log(this);
 
-      console.log(this);
+    cube.style.position = 'absolute';
+    cube.style.zIndex = '1000'
 
-      cube.style.position = 'absolute';
-      cube.style.zIndex = '1000'
+    document.body.append(cube);
 
-      document.body.append(cube);
+    moveAt(event.pageX, event.pageY);
 
-      moveAt(event.pageX, event.pageY);
-
-      function moveAt(pageX, pageY) {
-        detecter = false;
-        cube.style.left = `${pageX - shiftX}px`;
-        cube.style.top = `${pageY - shiftY}px`;
-      }
-
-      function onMouseMove(event) {
-        moveAt(event.pageX, event.pageY);
-      }
-
-
-      document.addEventListener('mousemove', onMouseMove);
-
-      cube.onmouseup = function () {
-        detecter = true;
-        document.removeEventListener('mousemove', onMouseMove);
-        cube.onmouseup = null;
-      }
-
-      cube.ondragstart = function () {
-        return false;
-      }
-
+    function moveAt(pageX, pageY) {
+      detecter = false;
+      cube.style.left = `${pageX - shiftX}px`;
+      cube.style.top = `${pageY - shiftY}px`;
     }
 
-  });
+    function onMouseMove(event) {
+      moveAt(event.pageX, event.pageY);
+    }
+
+
+    document.addEventListener('mousemove', onMouseMove);
+
+    cube.onmouseup = function () {
+      detecter = true;
+      document.removeEventListener('mousemove', onMouseMove);
+      cube.onmouseup = null;
+      cube.style.position = 'fixed';
+    }
+
+    cube.ondragstart = function () {
+      return false;
+    }
+
+  }
 
   // new code end
 
