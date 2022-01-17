@@ -143,6 +143,7 @@ window.addEventListener('load', () => {
 				transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
 				height: ${sideHeight}px;
 				width: ${sideWidth}px;
+				transition: width 0.6s, height 0.6s;
 				`
 			cubesides[1].style = `
 				-webkit-transform: translateZ(${sideTranslateZ}px);
@@ -152,6 +153,7 @@ window.addEventListener('load', () => {
 				transform: translateZ(${sideTranslateZ}px);
 				height: ${sideHeight}px;
 				width: ${sideWidth}px;
+				transition: width 0.6s, height 0.6s;
 				`
 			cubesides[2].style = `
 				-webkit-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
@@ -161,6 +163,7 @@ window.addEventListener('load', () => {
 				transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
 				height: ${sideHeight}px;
 				width: ${sideWidth}px;
+				transition: width 0.6s, height 0.6s;
 				`
 			cubesides[3].style = `
 				-webkit-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
@@ -170,6 +173,7 @@ window.addEventListener('load', () => {
 				transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
 				height: ${sideHeight}px;
 				width: ${sideWidth}px;
+				transition: width 0.6s, height 0.6s;
 				`
 			cubesides[4].style = `
 				-webkit-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
@@ -179,6 +183,7 @@ window.addEventListener('load', () => {
 				transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
 				height: ${sideHeight}px;
 				width: ${sideWidth}px;
+				transition: width 0.6s, height 0.6s;
 				`
 			cubesides[5].style = `
 				-webkit-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
@@ -188,6 +193,7 @@ window.addEventListener('load', () => {
 				transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
 				height: ${sideHeight}px;
 				width: ${sideWidth}px;
+				transition: width 0.6s, height 0.6s;
 				`
 		}
 

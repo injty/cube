@@ -60,6 +60,7 @@ body {
 	height: 200px;
 	width: 200px;
 	background-image: url("https://jordizle.com/static/img/codepen/blank.png");
+	background-color: transparent;
 	-webkit-touch-callout: none;
 	-moz-touch-callout: none;
 	-ms-touch-callout: none;
@@ -70,6 +71,7 @@ body {
 	-ms-user-select: none;
 	-o-user-select: none;
 	user-select: none;
+	transition: width 0.6s, height 0.6s;
 }
 
 .cube > div > div.cube-image {
@@ -91,8 +93,7 @@ body {
 	transition: color 600ms;
 	cursor: grab;
 	user-select: none;
-	background-color: #dd9933;
-	transition: height 0.4s, width 0.4s;
+	transition: height 0.6s, width 0.6s;
 }
 .cube > div > div.cube-image.active {
 	color: red;
@@ -113,7 +114,7 @@ body {
 	-o-transform: rotateX(90deg) translateZ(100px);
 	transform: rotateX(90deg) translateZ(100px);
 	outline: 1px solid transparent;
-	transition: transform 0.4s;
+	transition: transform 0.6s;
 }
 
 .cube > div:nth-child(2) {
@@ -123,7 +124,7 @@ body {
 	-o-transform: translateZ(100px);
 	transform: translateZ(100px);
 	outline: 1px solid transparent;
-	transition: transform 0.4s;
+	transition: transform 0.6s;
 }
 
 .cube > div:nth-child(3) {
@@ -133,7 +134,7 @@ body {
 	-o-transform: rotateY(90deg) translateZ(100px);
 	transform: rotateY(90deg) translateZ(100px);
 	outline: 1px solid transparent;
-	transition: transform 0.4s;
+	transition: transform 0.6s;
 }
 
 .cube > div:nth-child(4) {
@@ -143,7 +144,7 @@ body {
 	-o-transform: rotateY(180deg) translateZ(100px);
 	transform: rotateY(180deg) translateZ(100px);
 	outline: 1px solid transparent;
-	transition: transform 0.4s;
+	transition: transform 0.6s;
 }
 
 .cube > div:nth-child(5) {
@@ -153,7 +154,7 @@ body {
 	-o-transform: rotateY(-90deg) translateZ(100px);
 	transform: rotateY(-90deg) translateZ(100px);
 	outline: 1px solid transparent;
-	transition: transform 0.4s;
+	transition: transform 0.6s;
 }
 
 .cube > div:nth-child(6) {
@@ -163,7 +164,7 @@ body {
 	-o-transform: rotateX(-90deg) rotate(180deg) translateZ(100px);
 	transform: rotateX(-90deg) rotate(180deg) translateZ(100px);
 	outline: 1px solid transparent;
-	transition: transform 0.4s;
+	transition: transform 0.6s;
 }
 
 object {
