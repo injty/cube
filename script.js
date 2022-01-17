@@ -103,105 +103,107 @@ window.addEventListener('load', () => {
 		// new code start
 
 		const blank = document.querySelector('.blank');
-		let detecter = null;
-
 		const cube = document.querySelector('.viewport');
-
-
-		const checkingCubeSize = (cubeSwitcher) => {
-
-
-
-		}
-
-
 
 		// 7.1.2022
 		const cubeInnerAxle = document.querySelector('.cube');
 		const html = document.documentElement;
+		const cubesides = document.querySelectorAll('.cube > div');
+		const cubeimages = document.querySelectorAll('.cube-image');
+
+		let detecter = null;
+
+
+
+
+		function cubeResizer(sideTranslateZ, sideWidth, sideHeight, blankWidth, blankHeight) {
+			blank.style = `
+				height: ${blankHeight}px;
+				width: ${blankWidth}px;
+			`
+
+			cubeInnerAxle.style = `
+				height: ${sideHeight}px;
+				width: ${sideWidth}px;
+			`
+
+			for (let i = 0; i < cubeimages.length; i++) {
+				cubeimages[i].style = `
+				height: ${sideHeight}px;
+				width: ${sideWidth}px;
+				line-height: ${sideHeight}px;
+				`;
+			}
+
+			cubesides[0].style = `
+					-webkit-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
+				-moz-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
+				-ms-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
+				-o-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
+				transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
+				height: ${sideHeight}px;
+				width: ${sideWidth}px;
+				`
+			cubesides[1].style = `
+				-webkit-transform: translateZ(${sideTranslateZ}px);
+				-moz-transform: translateZ(${sideTranslateZ}px);
+				-ms-transform: translateZ(${sideTranslateZ}px);
+				-o-transform: translateZ(${sideTranslateZ}px);
+				transform: translateZ(${sideTranslateZ}px);
+				height: ${sideHeight}px;
+				width: ${sideWidth}px;
+				`
+			cubesides[2].style = `
+				-webkit-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
+				-moz-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
+				-ms-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
+				-o-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
+				transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
+				height: ${sideHeight}px;
+				width: ${sideWidth}px;
+				`
+			cubesides[3].style = `
+				-webkit-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
+				-moz-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
+				-ms-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
+				-o-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
+				transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
+				height: ${sideHeight}px;
+				width: ${sideWidth}px;
+				`
+			cubesides[4].style = `
+				-webkit-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
+				-moz-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
+				-ms-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
+				-o-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
+				transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
+				height: ${sideHeight}px;
+				width: ${sideWidth}px;
+				`
+			cubesides[5].style = `
+				-webkit-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
+				-moz-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
+				-ms-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
+				-o-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
+				transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
+				height: ${sideHeight}px;
+				width: ${sideWidth}px;
+				`
+		}
+
+
+		let cubeSizeSwitcher = false;
 
 		blank.onmousedown = function (event) {
-
 			// 7.1.2022
-			if (event.detail > 1) {
-				const cubesides = document.querySelectorAll('.cube > div');
-				const cubeimages = document.querySelectorAll('.cube-image');
-				const sides = document.querySelectorAll('.side');
-
-				blank.style = `
-				height: 35px;
-				width: 35px;
-			`
-
-				cubeInnerAxle.style = `
-				height: 100px;
-				width: 100px;
-			`
-
-				for (let i = 0; i < cubeimages.length; i++) {
-					cubeimages[i].style = `
-				height: 100px;
-				width: 100px;
-				line-height: 100px;
-				`;
-				}
-
-				cubesides[0].style = `
-					-webkit-transform: rotateX(90deg) translateZ(50px);
-				-moz-transform: rotateX(90deg) translateZ(50px);
-				-ms-transform: rotateX(90deg) translateZ(50px);
-				-o-transform: rotateX(90deg) translateZ(50px);
-				transform: rotateX(90deg) translateZ(50px);
-				height: 100px;
-				width: 100px;
-				`
-				cubesides[1].style = `
-				-webkit-transform: translateZ(50px);
-				-moz-transform: translateZ(50px);
-				-ms-transform: translateZ(50px);
-				-o-transform: translateZ(50px);
-				transform: translateZ(50px);
-				height: 100px;
-				width: 100px;
-				`
-				cubesides[2].style = `
-				-webkit-transform: rotateY(90deg) translateZ(50px);
-				-moz-transform: rotateY(90deg) translateZ(50px);
-				-ms-transform: rotateY(90deg) translateZ(50px);
-				-o-transform: rotateY(90deg) translateZ(50px);
-				transform: rotateY(90deg) translateZ(50px);
-				height: 100px;
-				width: 100px;
-				`
-				cubesides[3].style = `
-				-webkit-transform: rotateY(180deg) translateZ(50px);
-				-moz-transform: rotateY(180deg) translateZ(50px);
-				-ms-transform: rotateY(180deg) translateZ(50px);
-				-o-transform: rotateY(180deg) translateZ(50px);
-				transform: rotateY(180deg) translateZ(50px);
-				height: 100px;
-				width: 100px;
-				`
-				cubesides[4].style = `
-				-webkit-transform: rotateY(-90deg) translateZ(50px);
-				-moz-transform: rotateY(-90deg) translateZ(50px);
-				-ms-transform: rotateY(-90deg) translateZ(50px);
-				-o-transform: rotateY(-90deg) translateZ(50px);
-				transform: rotateY(-90deg) translateZ(50px);
-				height: 100px;
-				width: 100px;
-				`
-				cubesides[5].style = `
-				-webkit-transform: rotateX(-90deg) rotate(180deg) translateZ(50px);
-				-moz-transform: rotateX(-90deg) rotate(180deg) translateZ(50px);
-				-ms-transform: rotateX(-90deg) rotate(180deg) translateZ(50px);
-				-o-transform: rotateX(-90deg) rotate(180deg) translateZ(50px);
-				transform: rotateX(-90deg) rotate(180deg) translateZ(50px);
-				height: 100px;
-				width: 100px;
-				`
-			} else {
-
+			if (event.detail > 1 && !cubeSizeSwitcher) {
+				cubeResizer(50, 100, 100, 35, 35);
+				cubeSizeSwitcher = true;
+			} else if (event.detail > 1 && cubeSizeSwitcher) {
+				cubeResizer(100, 200, 200, 50, 50);
+				cubeSizeSwitcher = false;
+			}
+			else {
 				html.style.overflow = `hidden`
 
 				let cubeWidth = cube.offsetWidth,
