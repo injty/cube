@@ -6,11 +6,19 @@
 	box-sizing: border-box;
 }
 
+.q {
+	min-height: 1200px;
+}
+
 body {
 	background: #252525;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
 		Helvetica, Arial, "Lucida Grande", sans-serif;
 	font-weight: 300;
+}
+
+.fon {
+	background-image: url("https://picsum.photos/200/300");
 }
 
 .viewport {
@@ -32,8 +40,6 @@ body {
 	-ms-transform: scale(0.8, 0.8);
 	-o-transform: scale(0.8, 0.8);
 	transform: scale(0.8, 0.8);
-	/* -webkit-box-reflect: below 170px -webkit-gradient(linear, left top, left
-	bottom, from(transparent), color-stop(0%, transparent), to(rgba(250, 250, 250, 0.1))); */
 }
 
 .cube {
@@ -185,13 +191,10 @@ object:hover {
 	}
 }
 
-.q {
-	min-height: 3000px;
-}
 .blank {
-	background-color: transparent;
-	width: 80px;
-	height: 80px;
+	background-color: red;
+	width: 50px;
+	height: 50px;
 	position: absolute;
 	left: 50%;
 	top: 50%;
