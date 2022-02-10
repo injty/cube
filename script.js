@@ -240,7 +240,7 @@ window.addEventListener('load', () => {
 					detecter = true;
 					documentHtmlTag.style = `overflow-x: auto;`;
 					document.removeEventListener('mousemove', onMouseMove);
-					// cube.onmouseup = null;
+					cube.onmouseup = null;
 					cube.style.position = 'absolute';
 				}
 
