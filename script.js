@@ -300,7 +300,7 @@ window.addEventListener('load', () => {
 
 		// прокрутка куба
 		bindEvent(document, 'mousemove', function (e) {
-			if (detecter !== false && e.target.closest('.side')) {
+			if (detecter !== false && e.target.closest('#cube-wrapper')) {
 				self.mouseX = e.pageX;
 				self.mouseY = e.pageY;
 			}
