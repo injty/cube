@@ -1,29 +1,7 @@
-*,
-*:before,
-*:after {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-.q {
-	min-height: 1200px;
-}
-
-body {
-	background: #252525;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-		Helvetica, Arial, "Lucida Grande", sans-serif;
-	font-weight: 300;
-}
-
-.fon {
-	background-image: url("https://picsum.photos/200/300");
-}
-
+/* cube css start*/
 .viewport {
 	position: absolute;
-	top: 50px;
+	top: 25%;
 	left: 50px;
 	-webkit-perspective: 1600px;
 	-moz-perspective: 1600px;
@@ -40,6 +18,7 @@ body {
 	-ms-transform: scale(0.8, 0.8);
 	-o-transform: scale(0.8, 0.8);
 	transform: scale(0.8, 0.8);
+	z-index: 999;
 }
 
 .cube {
@@ -60,18 +39,17 @@ body {
 }
 
 .cube > div {
+	box-shadow: inset 0px 0px 0px 20px #fff;
+	border: 5px solid #fff;
 	overflow: hidden;
 	position: absolute;
-	opacity: 0.9;
 	height: 200px;
 	width: 200px;
-	background-image: url("https://jordizle.com/static/img/codepen/blank.png");
 	background-color: transparent;
 	-webkit-touch-callout: none;
 	-moz-touch-callout: none;
 	-ms-touch-callout: none;
 	-o-touch-callout: none;
-	touch-callout: none;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -98,6 +76,14 @@ body {
 	-o-transition: color 600ms;
 	transition: color 600ms;
 	cursor: grab;
+	-webkit-touch-callout: none;
+	-moz-touch-callout: none;
+	-ms-touch-callout: none;
+	-o-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
 	user-select: none;
 	transition: height 0.6s, width 0.6s;
 }
@@ -181,6 +167,63 @@ object:hover {
 	opacity: 1;
 }
 
+.blank {
+	background-color: transparent;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	cursor: move;
+	-webkit-touch-callout: none;
+	-moz-touch-callout: none;
+	-ms-touch-callout: none;
+	-o-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	touch-action: none;
+	user-select: none;
+}
+.cube__link,
+.cube__img {
+	width: 140%;
+	height: 140%;
+	-webkit-touch-callout: none;
+	-moz-touch-callout: none;
+	-ms-touch-callout: none;
+	-o-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	touch-action: none;
+	-webkit-user-drag: none;
+}
+.cube__img {
+	position: relative;
+	left: -20%;
+	top: -20%;
+	aspect-ratio: 1 / 1;
+	-webkit-touch-callout: none;
+	-moz-touch-callout: none;
+	-ms-touch-callout: none;
+	-o-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+	touch-action: none;
+	-webkit-user-drag: none;
+}
+html[dir="rtl"] .cube__img {
+	left: 20%;
+}
+
 @media (max-width: 640px) {
 	.viewport {
 		-webkit-transform: scale(0.6, 0.6);
@@ -189,17 +232,4 @@ object:hover {
 		-o-transform: scale(0.6, 0.6);
 		transform: scale(0.6, 0.6);
 	}
-}
-
-.blank {
-	background-color: red;
-	width: 50px;
-	height: 50px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	cursor: move;
-	touch-action: none;
-	user-select: none;
 }

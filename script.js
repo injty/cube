@@ -100,14 +100,10 @@ window.addEventListener('load', () => {
 
 	function Viewport(data) {
 
-		// new code start
-
 		const blank = document.querySelector('.blank');
 		const cube = document.querySelector('.viewport');
-
-		// 7.1.2022
 		const cubeInnerAxle = document.querySelector('.cube');
-		const documentHtmlTag = document.documentElement;
+		const html = document.documentElement;
 		const cubesides = document.querySelectorAll('.cube > div');
 		const cubeimages = document.querySelectorAll('.cube-image');
 
@@ -117,12 +113,12 @@ window.addEventListener('load', () => {
 			blank.style = `
 				height: ${blankHeight}px;
 				width: ${blankWidth}px;
-			`
+			`;
 
 			cubeInnerAxle.style = `
 				height: ${sideHeight}px;
 				width: ${sideWidth}px;
-			`
+			`;
 
 			for (let i = 0; i < cubeimages.length; i++) {
 				cubeimages[i].style = `
@@ -194,17 +190,14 @@ window.addEventListener('load', () => {
 				`;
 		}
 
-
+		let cubeSizeSwitcher = false;
 		let cubeScaleSizeSwitcher = 0.8;
 		if (window.innerWidth < 640) {
 			cubeScaleSizeSwitcher = 0.6;
 		}
 
-
-		let cubeSizeSwitcher = false;
-
 		blank.onmousedown = function (event) {
-			// 7.1.2022
+
 			if (event.detail > 1 && !cubeSizeSwitcher) {
 				cubeResizer(50, 100, 100, 35, 35);
 				cubeSizeSwitcher = true;
@@ -213,13 +206,13 @@ window.addEventListener('load', () => {
 				cubeSizeSwitcher = false;
 			}
 			else {
-				documentHtmlTag.style = `overflow-x: hidden;`;
+				html.style.overflow = `hidden`
 
 				let shiftX = event.clientX - blank.getBoundingClientRect().left;
 				let shiftY = event.clientY - blank.getBoundingClientRect().top;
 
 				cube.style.position = 'absolute';
-				cube.style.zIndex = '1000'
+				cube.style.zIndex = '1000';
 
 				moveAt(event.pageX, event.pageY);
 
@@ -238,7 +231,7 @@ window.addEventListener('load', () => {
 
 				cube.onmouseup = function (event) {
 					detecter = true;
-					documentHtmlTag.style = `overflow-x: auto;`;
+					html.style.overflow = `auto`;
 					document.removeEventListener('mousemove', onMouseMove);
 					cube.onmouseup = null;
 					cube.style.position = 'absolute';
@@ -437,9 +430,10 @@ window.addEventListener('load', () => {
 			this.previousPositionX = this.positionX;
 
 			this.emit('rotate');
-		}
-	}
 
+		}
+
+	}
 	var viewport = new Viewport({
 		element: document.getElementsByClassName('cube')[0],
 		fps: 20,
@@ -481,18 +475,23 @@ window.addEventListener('load', () => {
 	// сохранение вертикальной ротации изображения
 
 	Cube.prototype.upsideDown = function (obj) {
+
 		var deg = (obj.upsideDown == true) ? '180deg' : '0deg';
 		var i = 5;
+
 		while (i > 0 && --i) {
 			this.sides[i].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + deg + ')';
 		}
-	}
 
+	}
 	Cube.prototype.sideChange = function () {
+
 		for (var i = 0; i < this.sides.length; ++i) {
 			this.sides[i].getElementsByClassName('cube-image')[0].className = 'cube-image';
 		}
+
 		this.sides[this.viewport.currentSide - 1].getElementsByClassName('cube-image')[0].className = 'cube-image active';
+
 	}
 
 	new Cube({
@@ -500,4 +499,7 @@ window.addEventListener('load', () => {
 		element: document.getElementsByClassName('cube')[0]
 	});
 
-});
+
+
+
+})
