@@ -105,89 +105,95 @@ window.addEventListener('load', () => {
 		const cubeInnerAxle = document.querySelector('.cube');
 		const html = document.documentElement;
 		const cubesides = document.querySelectorAll('.cube > div');
-		const cubeimages = document.querySelectorAll('.cube-image');
+		const cubeImgWrapper = document.querySelectorAll('.cube__img-wrapper');
+		const cubeImgSrc = document.querySelectorAll('.cube__img-source');
 
 		let detecter = null;
 
 		function cubeResizer(sideTranslateZ, sideWidth, sideHeight, blankWidth, blankHeight) {
+
+			cube.classList.toggle('viewport-resizer');
+
 			blank.style = `
-				height: ${blankHeight}px;
-				width: ${blankWidth}px;
-			`;
+					height: ${blankHeight}px;
+					width: ${blankWidth}px;
+				`;
 
 			cubeInnerAxle.style = `
-				height: ${sideHeight}px;
-				width: ${sideWidth}px;
-			`;
-
-			for (let i = 0; i < cubeimages.length; i++) {
-				cubeimages[i].style = `
-				height: ${sideHeight}px;
-				width: ${sideWidth}px;
-				line-height: ${sideHeight}px;
+					height: ${sideHeight}px;
+					width: ${sideWidth}px;
 				`;
-			}
+
+			// resize images wrapper
+			cubeImgWrapper.forEach(wrap => {
+				wrap.setAttribute('data-resize', '')
+			});
+
+			// resize images
+			cubeImgSrc.forEach(img => {
+				img.setAttribute('data-resize', '')
+			});
 
 			cubesides[0].style = `
-					-webkit-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
-				-moz-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
-				-ms-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
-				-o-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
-				transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
-				height: ${sideHeight}px;
-				width: ${sideWidth}px;
-				transition: width 0.6s, height 0.6s;
-				`;
+						-webkit-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
+					-moz-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
+					-ms-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
+					-o-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
+					transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
+					height: ${sideHeight}px;
+					width: ${sideWidth}px;
+					transition: width 0.6s, height 0.6s;
+					`;
 			cubesides[1].style = `
-				-webkit-transform: translateZ(${sideTranslateZ}px);
-				-moz-transform: translateZ(${sideTranslateZ}px);
-				-ms-transform: translateZ(${sideTranslateZ}px);
-				-o-transform: translateZ(${sideTranslateZ}px);
-				transform: translateZ(${sideTranslateZ}px);
-				height: ${sideHeight}px;
-				width: ${sideWidth}px;
-				transition: width 0.6s, height 0.6s;
-				`;
+					-webkit-transform: translateZ(${sideTranslateZ}px);
+					-moz-transform: translateZ(${sideTranslateZ}px);
+					-ms-transform: translateZ(${sideTranslateZ}px);
+					-o-transform: translateZ(${sideTranslateZ}px);
+					transform: translateZ(${sideTranslateZ}px);
+					height: ${sideHeight}px;
+					width: ${sideWidth}px;
+					transition: width 0.6s, height 0.6s;
+					`;
 			cubesides[2].style = `
-				-webkit-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
-				-moz-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
-				-ms-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
-				-o-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
-				transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
-				height: ${sideHeight}px;
-				width: ${sideWidth}px;
-				transition: width 0.6s, height 0.6s;
-				`;
+					-webkit-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
+					-moz-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
+					-ms-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
+					-o-transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
+					transform: rotateY(90deg) translateZ(${sideTranslateZ}px);
+					height: ${sideHeight}px;
+					width: ${sideWidth}px;
+					transition: width 0.6s, height 0.6s;
+					`;
 			cubesides[3].style = `
-				-webkit-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
-				-moz-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
-				-ms-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
-				-o-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
-				transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
-				height: ${sideHeight}px;
-				width: ${sideWidth}px;
-				transition: width 0.6s, height 0.6s;
-				`;
+					-webkit-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
+					-moz-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
+					-ms-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
+					-o-transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
+					transform: rotateY(180deg) translateZ(${sideTranslateZ}px);
+					height: ${sideHeight}px;
+					width: ${sideWidth}px;
+					transition: width 0.6s, height 0.6s;
+					`;
 			cubesides[4].style = `
-				-webkit-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
-				-moz-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
-				-ms-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
-				-o-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
-				transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
-				height: ${sideHeight}px;
-				width: ${sideWidth}px;
-				transition: width 0.6s, height 0.6s;
-				`;
+					-webkit-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
+					-moz-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
+					-ms-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
+					-o-transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
+					transform: rotateY(-90deg) translateZ(${sideTranslateZ}px);
+					height: ${sideHeight}px;
+					width: ${sideWidth}px;
+					transition: width 0.6s, height 0.6s;
+					`;
 			cubesides[5].style = `
-				-webkit-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
-				-moz-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
-				-ms-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
-				-o-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
-				transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
-				height: ${sideHeight}px;
-				width: ${sideWidth}px;
-				transition: width 0.6s, height 0.6s;
-				`;
+					-webkit-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
+					-moz-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
+					-ms-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
+					-o-transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
+					transform: rotateX(-90deg) rotate(180deg) translateZ(${sideTranslateZ}px);
+					height: ${sideHeight}px;
+					width: ${sideWidth}px;
+					transition: width 0.6s, height 0.6s;
+					`;
 		}
 
 		let cubeSizeSwitcher = false;
@@ -198,13 +204,24 @@ window.addEventListener('load', () => {
 
 		blank.onmousedown = function (event) {
 
+			// меняем размер куба начало
 			if (event.detail > 1 && !cubeSizeSwitcher) {
 				cubeResizer(50, 100, 100, 35, 35);
 				cubeSizeSwitcher = true;
-			} else if (event.detail > 1 && cubeSizeSwitcher) {
+			}
+			// если уменьшен то:
+			else if (event.detail > 1 && cubeSizeSwitcher) {
 				cubeResizer(100, 200, 200, 50, 50);
 				cubeSizeSwitcher = false;
+
+				cubeImgWrapper.forEach(wrap => {
+					wrap.removeAttribute('data-resize');
+				});
+				cubeImgSrc.forEach(img => {
+					img.removeAttribute('data-resize');
+				});
 			}
+			// меняем размер куба конец
 			else {
 				html.style.overflow = `hidden`
 
@@ -231,7 +248,7 @@ window.addEventListener('load', () => {
 
 				cube.onmouseup = function (event) {
 					detecter = true;
-					html.style.overflow = `auto`;
+					html.style.overflowY = `auto`;
 					document.removeEventListener('mousemove', onMouseMove);
 					cube.onmouseup = null;
 					cube.style.position = 'absolute';
@@ -345,35 +362,45 @@ window.addEventListener('load', () => {
 			this.torqueX = this.torqueX * this.sensivityFade + (this.distanceX * this.speed - this.torqueX) * this.sensivity;
 			this.torqueY = this.torqueY * this.sensivityFade + (this.distanceY * this.speed - this.torqueY) * this.sensivity;
 		}
+
 		if (Math.abs(this.torqueX) > 1.0 || Math.abs(this.torqueY) > 1.0) {
 			if (!this.down) {
 				this.torqueX *= this.sensivityFade;
 				this.torqueY *= this.sensivityFade;
 			}
+
 			this.positionY -= this.torqueY;
+
 			if (this.positionY > 360) {
 				this.positionY -= 360;
 			} else if (this.positionY < 0) {
 				this.positionY += 360;
 			}
+
 			if (this.positionY > 90 && this.positionY < 270) {
 				this.positionX -= this.torqueX;
+
 				if (!this.upsideDown) {
 					this.upsideDown = true;
 					this.emit('upsideDown', { upsideDown: this.upsideDown });
 				}
+
 			} else {
+
 				this.positionX += this.torqueX;
+
 				if (this.upsideDown) {
 					this.upsideDown = false;
 					this.emit('upsideDown', { upsideDown: this.upsideDown });
 				}
 			}
+
 			if (this.positionX > 360) {
 				this.positionX -= 360;
 			} else if (this.positionX < 0) {
 				this.positionX += 360;
 			}
+
 			if (!(this.positionY >= 46 && this.positionY <= 130) && !(this.positionY >= 220 && this.positionY <= 308)) {
 				if (this.upsideDown) {
 					if (this.positionX >= 42 && this.positionX <= 130) {
@@ -400,21 +427,29 @@ window.addEventListener('load', () => {
 				if (this.positionY >= 46 && this.positionY <= 130) {
 					this.calculatedSide = 6;
 				}
+
 				if (this.positionY >= 220 && this.positionY <= 308) {
 					this.calculatedSide = 1;
 				}
 			}
+
 			if (this.calculatedSide !== this.currentSide) {
 				this.currentSide = this.calculatedSide;
 				this.emit('sideChange');
 			}
+
 		}
+
 		this.element.style[userPrefix.js + 'Transform'] = 'rotateX(' + this.positionY + 'deg) rotateY(' + this.positionX + 'deg)';
+
 		if (this.positionY != this.previousPositionY || this.positionX != this.previousPositionX) {
 			this.previousPositionY = this.positionY;
 			this.previousPositionX = this.positionX;
+
 			this.emit('rotate');
+
 		}
+
 	}
 	var viewport = new Viewport({
 		element: document.getElementsByClassName('cube')[0],
@@ -424,10 +459,13 @@ window.addEventListener('load', () => {
 		speed: 2,
 		touchSensivity: 1.5
 	});
+
 	function Cube(data) {
 		var self = this;
+
 		this.element = data.element;
 		this.sides = this.element.getElementsByClassName('side');
+
 		this.viewport = data.viewport;
 		this.viewport.on('rotate', function () {
 			self.rotateSides();
@@ -439,31 +477,40 @@ window.addEventListener('load', () => {
 			self.sideChange();
 		});
 	}
+
 	// сохранение вертикальной ротации изображения
 	Cube.prototype.rotateSides = function () {
 		var viewport = this.viewport;
 		if (viewport.positionY > 90 && viewport.positionY < 270) {
-			this.sides[0].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + (viewport.positionX + viewport.torqueX) + 'deg)';
-			this.sides[5].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + -(viewport.positionX + 180 + viewport.torqueX) + 'deg)';
+			this.sides[0].getElementsByClassName('cube__img-wrapper')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + (viewport.positionX + viewport.torqueX) + 'deg)';
+			this.sides[5].getElementsByClassName('cube__img-wrapper')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + -(viewport.positionX + 180 + viewport.torqueX) + 'deg)';
 		} else {
-			this.sides[0].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + (viewport.positionX - viewport.torqueX) + 'deg)';
-			this.sides[5].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + -(viewport.positionX + 180 - viewport.torqueX) + 'deg)';
+			this.sides[0].getElementsByClassName('cube__img-wrapper')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + (viewport.positionX - viewport.torqueX) + 'deg)';
+			this.sides[5].getElementsByClassName('cube__img-wrapper')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + -(viewport.positionX + 180 - viewport.torqueX) + 'deg)';
 		}
 	}
 	// сохранение вертикальной ротации изображения
+
 	Cube.prototype.upsideDown = function (obj) {
+
 		var deg = (obj.upsideDown == true) ? '180deg' : '0deg';
 		var i = 5;
+
 		while (i > 0 && --i) {
-			this.sides[i].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + deg + ')';
+			this.sides[i].getElementsByClassName('cube__img-wrapper')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + deg + ')';
 		}
+
 	}
 	Cube.prototype.sideChange = function () {
+
 		for (var i = 0; i < this.sides.length; ++i) {
-			this.sides[i].getElementsByClassName('cube-image')[0].className = 'cube-image';
+			this.sides[i].getElementsByClassName('cube__img-wrapper')[0].className = 'cube__img-wrapper';
 		}
-		this.sides[this.viewport.currentSide - 1].getElementsByClassName('cube-image')[0].className = 'cube-image active';
+
+		this.sides[this.viewport.currentSide - 1].getElementsByClassName('cube__img-wrapper')[0].className = 'cube__img-wrapper active';
+
 	}
+
 	new Cube({
 		viewport: viewport,
 		element: document.getElementsByClassName('cube')[0]
