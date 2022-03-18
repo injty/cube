@@ -107,12 +107,28 @@ window.addEventListener('load', () => {
 		const cubesides = document.querySelectorAll('.cube > div');
 		const cubeImgWrapper = document.querySelectorAll('.cube__img-wrapper');
 		const cubeImgSrc = document.querySelectorAll('.cube__img-source');
+		const cubeImgInterest = document.querySelectorAll('.side-interest');
 
 		let detecter = null;
 
+		// add data-resize attribute
+		const resizers = function (arr) {
+			arr.forEach(item => {
+				item.setAttribute('data-resize', '');
+			});
+		};
+
+		// main resizing function
 		function cubeResizer(sideTranslateZ, sideWidth, sideHeight, blankWidth, blankHeight) {
 
 			cube.classList.toggle('viewport-resizer');
+
+			// resize images
+			resizers(cubeImgSrc);
+			// resize images wrapper
+			resizers(cubeImgWrapper);
+			// resize interest
+			resizers(cubeImgInterest);
 
 			blank.style = `
 					height: ${blankHeight}px;
@@ -124,15 +140,7 @@ window.addEventListener('load', () => {
 					width: ${sideWidth}px;
 				`;
 
-			// resize images wrapper
-			cubeImgWrapper.forEach(wrap => {
-				wrap.setAttribute('data-resize', '')
-			});
 
-			// resize images
-			cubeImgSrc.forEach(img => {
-				img.setAttribute('data-resize', '')
-			});
 
 			cubesides[0].style = `
 						-webkit-transform: rotateX(90deg) translateZ(${sideTranslateZ}px);
@@ -218,6 +226,9 @@ window.addEventListener('load', () => {
 					wrap.removeAttribute('data-resize');
 				});
 				cubeImgSrc.forEach(img => {
+					img.removeAttribute('data-resize');
+				});
+				cubeImgInterest.forEach(img => {
 					img.removeAttribute('data-resize');
 				});
 			}

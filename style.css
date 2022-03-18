@@ -71,6 +71,9 @@
 	height: 100px;
 }
 .cube > div > div.cube__img-wrapper {
+	position: relative;
+	top: -8px;
+	left: -8px;
 	width: 200px;
 	height: 200px;
 	-webkit-transform: rotate(180deg);
@@ -215,21 +218,16 @@ object:hover {
 }
 .si-scores {
 	width: 100%;
-	min-width: 185px;
-	max-width: 185px;
-	text-align: center;
-	margin: 0 auto;
 	padding: 0;
 	color: #f2f2f2;
 	text-shadow: 1px 3px 13px rgba(0,0,0,0.2);
-	height: 50px;
-	font-size: 24px;
 }
 .si-score__text {
 	position: relative;
 	margin: 0 auto;
 	font-size: 60px;
-	line-height: 90px;
+	line-height: 85px;
+	text-align: center;
 	font-weight: 600;
 	user-select: none;
 	-moz-user-select: none;
@@ -241,7 +239,7 @@ object:hover {
 	line-height: 24px;
 	font-size: 20px;
 	bottom: 0px;
-	right: 30px;
+	left: 55%;
 }
 
 
@@ -278,6 +276,16 @@ img[data-resize] {
 	max-width: 150px !important;
 	min-width: 150px !important;
 	min-height: 120px !important;
+}
+.side-interest[data-resize] {
+	height: 50px;
+}
+.side-interest[data-resize] .si-score__text {
+	font-size: 34px;
+	line-height: 50px;
+}
+.side-interest[data-resize] span {
+	display: none;
 }
 
 html[dir="rtl"] .cube__img-source {
