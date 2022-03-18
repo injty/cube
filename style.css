@@ -45,7 +45,6 @@
 	transform: rotateX(136deg) rotateY(1122deg);
 }
 .cube > div {
-	box-shadow: inset 0px 0px 0px 20px #fff;
 	border: 8px solid;
 	border-image-slice: 1;
 	border-width: 8px;
