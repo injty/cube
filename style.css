@@ -287,9 +287,22 @@ img[data-resize] {
 	display: none;
 }
 
-html[dir="rtl"] .cube__img-source {
-	left: 20%;
+/* cube rtl styles */
+html[dir="rtl"] .viewport {
+	left: 5rem;
+	right: unset;
 }
+html[dir="rtl"] .si-scores {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+html[dir="rtl"] .cube>div>div.cube__img-wrapper {
+	bottom: -9px;
+	right: -9px;
+}
+
+/* cube media */
 @media (max-width: 640px) {
 	.viewport {
 		-webkit-transform: scale(0.6, 0.6);
